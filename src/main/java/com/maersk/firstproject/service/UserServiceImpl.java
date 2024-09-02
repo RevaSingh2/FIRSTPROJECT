@@ -1,7 +1,7 @@
 package com.maersk.firstproject.service;
 
 import com.maersk.firstproject.dto.UserDto;
-import com.maersk.firstproject.entities.User;
+import com.maersk.firstproject.entities.AppUser;
 import com.maersk.firstproject.repository.UserRepository;
 import com.maersk.firstproject.service.interfaceimpl.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,36 +17,36 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User createUser(UserDto userDto) {
-        User user = new User();
-        user.setName(userDto.getName());
-        user.setCity(userDto.getCity());
-        user.setStatus(userDto.getStatus());
-        userRepository.save(user);
-        return user;
+    public AppUser createUser(UserDto userDto) {
+        AppUser appUser = new AppUser();
+        appUser.setName(userDto.getName());
+        appUser.setCity(userDto.getCity());
+        appUser.setStatus(userDto.getStatus());
+        userRepository.save(appUser);
+        return appUser;
     }
     @Override
-    public Optional<User> readUser(int id) {
+    public Optional<AppUser> readUser(int id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public User updateUser(int id, UserDto userDto) {
+    public AppUser updateUser(int id, UserDto userDto) {
         if (userDto == null) {
             throw new IllegalArgumentException("UserDto cannot be null");
         }
 
-        User user = userRepository.findById(id)
+        AppUser appUser = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
 
-        user.setName(userDto.getName());
-        user.setCity(userDto.getCity());
-        user.setStatus(userDto.getStatus());
+        appUser.setName(userDto.getName());
+        appUser.setCity(userDto.getCity());
+        appUser.setStatus(userDto.getStatus());
 
         // Save the updated user
-        userRepository.save(user);
+        userRepository.save(appUser);
 
-        return user;
+        return appUser;
     }
 
 

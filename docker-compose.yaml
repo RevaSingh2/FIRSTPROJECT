@@ -1,0 +1,24 @@
+services:
+  db:
+    ports:
+      - 5432:5432
+    container_name: some-postgres
+    image: postgres
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+    restart: always
+  backend:
+    build: .
+    container_name: testapp_container
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - db
+    restart: always
+
