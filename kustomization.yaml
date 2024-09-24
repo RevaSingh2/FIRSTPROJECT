@@ -1,0 +1,5 @@
+resources:
+  - k8s/postgres.yaml
+  - k8s/prometheus.yaml
+  - k8s/grafana.yaml
+  - k8s/springboot.yaml

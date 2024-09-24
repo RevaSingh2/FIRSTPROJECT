@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+//the UserDto class  is a convenient way to represent and transfer data in a structured format,
+// with annotations that aid in JSON serialization/deserialization and reduce boilerplate code.
+
 @Data
 @Getter
 @Setter

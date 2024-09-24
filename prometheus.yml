@@ -1,0 +1,10 @@
+#specifies how Prometheus should scrape metrics from your Spring Boot application
+
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'spring-boot-app'
+    static_configs:
+      - targets: ['app:8080']
+    metrics_path: '/actuator/prometheus'
